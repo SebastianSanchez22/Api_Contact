@@ -13,7 +13,8 @@ export const Asesor = db.define('asesores', {
     },
     telefono_asesor: {
         type: Sequelize.BIGINT,
-        allowNull: false
+        allowNull: false,
+        validate: {min: 3000000000, max: 39999999999}
     },
     telegram_id: {
         type: Sequelize.BIGINT,
