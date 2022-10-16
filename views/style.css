@@ -1,39 +1,3 @@
-.btn-group button {
-
-     
-    border: 1px solid green;
-    color: white; 
-    padding: 10px 24px; 
-    cursor: pointer; 
-    float: left;
-    margin-bottom: 20px;
-    margin-left: 10px;
-}
-  
-.btn-group .Whatsapp{
-    background-color: #25d366;
-}
-.btn-group .Telegram{
-    background-color: #0088cc;
-}
-.btn-group .Llamada{
-    background-color: blue;
-}  /* Para prevenir doble borde*/  
-.btn-group button:not(:last-child) {
-    border-right: none;
-}
-
-.btn-group:after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-/*Agregar un color distintivo cuando se hace el hover*/
-.btn-group button:hover {
-    background-color: #3e8e41;
-}
-
 .floating-contact-form .contact-icon {
     position: fixed;
     bottom: 40px;

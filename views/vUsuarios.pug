@@ -1,23 +1,37 @@
 doctype html
 html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Api Alternativa | Proyecto III
-        link(rel="stylesheet", href="/css/style.css")
-        link(rel='preconnect' href='https://fonts.googleapis.com')
-        link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
-        link(href='https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Staatliches&display=swap' rel='stylesheet')
-    body 
-        .floating-contact-form
-            .form-container
-                h3 Nos gustaría brindarte más información
-                form(action="/", method="POST")
-                    input(name = "nombre_completo" placeholder = 'Nombre' type='text' required)
-                    input(name = "telefono_usuario" placeholder='Celular' type='text' required)
-                    input(name = "categoria" placeholder='Categoría' type='text' required)
-                    input(name = "plataforma" placeholder='Plataforma' type='text' required)
-                    input(type='submit')
-        script(src="floatingButton.js")
-                    
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Api Alternativa | Proyecto III
+    link(rel="stylesheet", href="/css/style.css")
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css' integrity='sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==' crossorigin='anonymous' referrerpolicy='no-referrer')
+    script(src='floatingButton.js') 
+    
+  body 
+    .floating-contact-form
+      .form-container
+          h3 Nos gustaría brindarte más información
+          form(action="/", method="POST")
+            .field-container
+              input(name = "nombre_completo" placeholder = 'Nombre' type='text' required)
+              i.fas.fa-signature
+            
+            .field-container
+              input(name = "telefono_usuario" placeholder='Celular' type='text' required)
+              i.fas.fa-phone
+            
+            input(type='submit')
+
+      .contact-icon 
+        i.fas.fa-comments
+
+    
+
+//.field-container
+  input(name = "categoria" placeholder='Categoría' type='text' required)
+
+//.field-container
+  input(name = "plataforma" placeholder='Plataforma' type='text' required)
+

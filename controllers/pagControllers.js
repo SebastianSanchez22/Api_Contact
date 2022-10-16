@@ -2,7 +2,7 @@ import {Asesor} from '../models/asesor.js';
 import { Usuario } from '../models/usuario.js';
 
 const p_home = (req, res) => {
-    res.render('vUsuarios');
+    res.render('vUsuarios.pug');
 }
 
 const p_asesores = async (req, res) => {
