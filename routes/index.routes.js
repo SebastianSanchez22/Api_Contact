@@ -14,13 +14,19 @@ import {
 } from '../controllers/asesoresController.js';
 
 import { 
-    guardar_usuarios
+    guardar_usuarios,
+    eliminar_usuario
 } from '../controllers/usuariosController.js';
+
+import {
+    guardar_asesorias
+} from '../controllers/asesoriasController.js';
 
 const router = express.Router();
 
 router.get('/', p_home);
 router.post('/', guardar_usuarios);
+//router.post('/', guardar_asesorias);
 
 router.get('/asesores', p_asesores);
 router.post('/asesores', guardar_asesores);
@@ -31,5 +37,6 @@ router.get('/asesores/:id',asesor);
 router.get('/usuarios',p_usuarios);
 router.get('/usuarios/:id',usuario);
 router.post('/usuarios',guardar_usuarios);
+router.delete('/usuarios/:id_usuario',eliminar_usuario);
 
 export default router;

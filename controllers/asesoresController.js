@@ -2,11 +2,12 @@ import { Asesor } from "../models/asesor.js";
 
 const guardar_asesores = async (req, res) => {
     //Validar
-    const { nombre, telefono } = req.body;
+    const { nombre, telefono, telegram_id } = req.body;
     try {
         const nuevoAsesor = await Asesor.create({
             nombre,
-            telefono
+            telefono,
+            telegram_id
         });
         res.json(nuevoAsesor);
     } catch (error) {
@@ -33,11 +34,12 @@ const actualizar_asesor = async (req, res) => {
     try {
         //Validar
         const { id } = req.params;
-        const {nombre, telefono} = req.body
+        const {nombre, telefono, telegram_id} = req.body
         
         const asesor = await Asesor.findByPk(id)
         asesor.nombre = nombre
         asesor.telefono = telefono
+        asesor.telegram_id = telegram_id
 
         await asesor.save();
 

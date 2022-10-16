@@ -13,6 +13,11 @@ export const Usuario = db.define('usuarios', {
     },
     telefono_usuario: {
         type: Sequelize.BIGINT,
-        allowNull: false
+        allowNull: false,
+        validate: {min: 3000000000, max: 39999999999}
+    },
+    plataforma: {
+        type: Sequelize.STRING,
+        allowNull: false,
     }
 })

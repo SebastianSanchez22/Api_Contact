@@ -14,9 +14,10 @@ html(lang="en")
             .form-container
                 h3 Nos gustaría brindarte más información
                 form(action="/", method="POST")
-                    input(name = "nombre" placeholder = 'Nombre' type='text' required)
-                    input(name = "telefono" placeholder='Celular' type='text' required)
+                    input(name = "nombre_completo" placeholder = 'Nombre' type='text' required)
+                    input(name = "telefono_usuario" placeholder='Celular' type='text' required)
                     input(name = "categoria" placeholder='Categoría' type='text' required)
                     input(name = "plataforma" placeholder='Plataforma' type='text' required)
                     input(type='submit')
+        script(src="floatingButton.js")
                     
