@@ -1,8 +1,15 @@
 import { Asesor } from "../models/asesor.js";
 
 const guardar_asesores = async (req, res) => {
-    //Validar
+    //Revisar
     const { nombre, telefono, telegram_id } = req.body;
+    if(!nombre || nombre.length <3 || nombre.length > 30){
+        res.status(400).json({mensaje: 'El nombre es requerido y debe ser al menos 3 letras y a lo sumo de 30'})
+    }
+    if(!telefono || telefono.length != 10){
+        res.status(400).json({mensaje: 'El numero de telefono es requerido y debe tener 10 digitos'})
+    }
+    //Telegram ID
     try {
         const nuevoAsesor = await Asesor.create({
             nombre,
@@ -16,7 +23,7 @@ const guardar_asesores = async (req, res) => {
 };
 
 const eliminar_asesor = async (req, res) => {
-    //Validar
+    //Formato del ID
     try {
         const { id } = req.params;
         await Asesor.destroy({
@@ -26,16 +33,23 @@ const eliminar_asesor = async (req, res) => {
         });
         res.sendStatus(204);
     } catch (error) {
-        return res.status(500).json({message:error.message});
+        return res.status(500).json({mensaje: 'Para eliminar un asesor, el asesor debe existir. Revise el id, por favor'});
     }
 };
 
 const actualizar_asesor = async (req, res) => {
     try {
-        //Validar
+        
         const { id } = req.params;
         const {nombre, telefono, telegram_id} = req.body
-        
+        if(!nombre || nombre.length <3 || nombre.length > 30){
+            res.status(400).send('El nombre es requerido y debe ser al menos 3 letras y a lo sumo de 30');
+        }
+        if(!telefono || telefono.length != 10){
+            res.status(400).send('El telefono es requerido y debe ser de 10 digitos');
+        }
+        //Telegram ID
+
         const asesor = await Asesor.findByPk(id)
         asesor.nombre = nombre
         asesor.telefono = telefono
@@ -45,7 +59,8 @@ const actualizar_asesor = async (req, res) => {
 
         res.json(asesor);
     } catch (error) {
-        return res.status(500).json({message: error.message});
+        //return res.status(500).json({message: error.message});
+        return res.status(500).json({mensaje: 'Para actualizar un asesor, el asesor debe existir. Revise el id, por favor'});
     }
 };
 
