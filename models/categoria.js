@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 import db from "../configuracion/db.js";
 
-export const Categoria = db.define('categorias', {
+export const Categoria = db.define('categoria', {
     id_categoria: {
         type: Sequelize.INTEGER,
         primaryKey: true,

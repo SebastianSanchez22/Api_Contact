@@ -1,22 +1,25 @@
 import Sequelize from "sequelize";
 import db from "../configuracion/db.js";
 
-export const Asesor = db.define('asesores', {
+export const Asesor = db.define('asesor', {
     id_asesor: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    nombre_asesor: {
+    nombreAsesor: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    telefono_asesor: {
+    celular: {
         type: Sequelize.BIGINT,
         allowNull: false,
-        validate: {min: 3000000000, max: 39999999999}
     },
-    telegram_id: {
+    correo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    telegramId: {
         type: Sequelize.BIGINT,
         allowNull: false
     }
