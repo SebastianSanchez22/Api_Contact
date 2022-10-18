@@ -31,7 +31,7 @@ html(lang="en")
               i.fas.fa-share-square
 
             .field-container
-              input(name = "fechaAsesoria" placeholder='fecha de la Asesoría' type='date' required)
+              input(placeholder='Fecha de la asesoría' onfocus="(this.type='date')" onblur="(this.type='text')" type='date')
               i.fas.fa-calendar-alt
             
             input(type='submit')
