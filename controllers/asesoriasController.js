@@ -6,8 +6,12 @@ const guardar_Asesoria = async (req, res) => {
     if(!nombreAsesorado || nombreAsesorado.length <3 || nombreAsesorado.length > 30){
         res.status(400).json({mensaje: 'El nombre es requerido y debe ser al menos 3 letras y a lo sumo de 30'})
     }else{
-        if(!celular || celular.length != 10){
-            res.status(400).json({mensaje: 'El numero de telefono es requerido y debe tener 10 digitos'})
+        if(!celular){
+            res.status(400).json({mensaje: 'El numero de telefono es requerido'})
+        }else if(!(celular === parseInt(celular, 10))){
+            res.status(400).json({mensaje: 'Debe ingresar un número de 10 digitos, no una palabra'})
+        }else if (celular.toString().length != 10 ){
+            res.status(400).json({mensaje: 'Debe ingresar un número de 10 dígitos'})
         }else{
             if(!categoria){
                 res.status(400).json({mensaje: 'La categoría es requerida'})
@@ -31,8 +35,8 @@ const guardar_Asesoria = async (req, res) => {
             plataforma,
             fechaAsesoria
         });
-        res.redirect('/');
-        //res.json(nuevaAsesoria);
+        //res.redirect('/');
+        res.json(nuevaAsesoria);
     } catch (error) {
         console.log(error);
     }
