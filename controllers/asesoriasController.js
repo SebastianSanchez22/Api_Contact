@@ -31,8 +31,8 @@ const guardar_Asesoria = async (req, res) => {
             plataforma,
             fechaAsesoria
         });
-        //res.redirect('/');
-        res.json(nuevaAsesoria);
+        res.redirect('/');
+        //res.json(nuevaAsesoria);
     } catch (error) {
         console.log(error);
     }
@@ -47,7 +47,7 @@ const eliminar_Asesoria = async (req, res) => {
                 id_asesoria,
             },
         });
-        res.json({mensaje: 'La Asesoria ' + id_asesoria+ ' se elmino con exito'})
+        res.json({mensaje: 'La Asesoria ' + id_asesoria+ ' se elimino con exito'})
         res.sendStatus(204);
     //Cuando se jode??
     } catch (error) {

@@ -1,15 +1,14 @@
 CREATE DATABASE api_contact;
 USE api_contact;
 
-
 CREATE TABLE IF NOT EXISTS Asesoria (
-	id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_asesoria INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombreAsesorado VARCHAR(50) NOT NULL,
     celular BIGINT NOT NULL,
     categoria VARCHAR(50) NOT NULL,
 	plataforma VARCHAR(20) NOT NULL,
-    fechaAsesoria DATE NOT NULL DEFAULT (NOW()),
-    estado VARCHAR(1));
+    fechaAsesoria DATE NOT NULL,
+    estado VARCHAR(10) DEFAULT 'Pendiente');
     
 CREATE TABLE IF NOT EXISTS Categoria (
 	id_categoria INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -36,7 +35,6 @@ CREATE TABLE IF NOT EXISTS Asesor_Categoria (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
-
 
 
 

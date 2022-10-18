@@ -26,11 +26,11 @@ export const Asesoria = db.define('asesoria', {
     fechaAsesoria: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.NOW 
     },
     estado: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 'Pendiente'
     }})
 
 
