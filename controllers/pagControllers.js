@@ -1,5 +1,5 @@
 import {Asesor} from '../models/asesor.js';
-import { Usuario } from '../models/usuario.js';
+import { Asesoria } from '../models/asesoria.js';
 
 const p_home = (req, res) => {
     res.render('vUsuarios.pug');
@@ -14,21 +14,20 @@ const p_asesores = async (req, res) => {
     }
 }
 
-const p_usuarios = async (req, res) => {
+const p_asesorias = async (req, res) => {
     try{
-        const usuarios = await Usuario.findAll();
-        res.json(usuarios)
+        const asesorias = await Asesoria.findAll();
+        res.json(asesorias)
     } catch (error) {
         return res.status(500).json({message: error.message});
     }
 }
 
-const usuario = async (req, res, next) => {
+const asesoria = async (req, res, next) => {
     try{
         const {id} = req.params;
-
-        const usuario = await Usuario.findByPk(id);
-        res.json(usuario);
+        const asesoria = await Asesoria.findByPk(id);
+        res.json(asesoria);
 
     } catch(error) {
         next(error)
@@ -49,6 +48,6 @@ const asesor = async (req, res, next) => {
 
 export {p_home,
         p_asesores,
-        p_usuarios, 
+        p_asesorias, 
         asesor,
-        usuario};
+        asesoria};

@@ -10,10 +10,10 @@ const guardar_Asesoria = async (req, res) => {
             res.status(400).json({mensaje: 'El numero de telefono es requerido y debe tener 10 digitos'})
         }else{
             if(!categoria){
-                res.status(400)
+                res.status(400).json({mensaje: 'La categoría es requerida'})
             }else{
                 if(!plataforma){
-                    res.status(400)
+                    res.status(400).json({mensaje: 'La plataforma es requerida'})
                 }else{
                     if(!fechaAsesoria){
                         res.status(400).json({mensaje:'La fecha de la asesoria es requerida'})
@@ -24,7 +24,7 @@ const guardar_Asesoria = async (req, res) => {
     }
     
     try {
-        const nuevoAsesoria = await Asesoria.create({
+        const nuevaAsesoria = await Asesoria.create({
             nombreAsesorado,
             celular,
             categoria,
@@ -32,7 +32,7 @@ const guardar_Asesoria = async (req, res) => {
             fechaAsesoria
         });
         //res.redirect('/');
-        res.json(nuevoAsesoria);
+        res.json(nuevaAsesoria);
     } catch (error) {
         console.log(error);
     }
