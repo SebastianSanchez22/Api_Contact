@@ -4,10 +4,10 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Api Alternativa | Proyecto III
-    link(rel="stylesheet", href="/css/style.css")
+    title Api_Contact
     link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css' integrity='sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==' crossorigin='anonymous' referrerpolicy='no-referrer')
-    script(src='floatingButton.js') 
+    link(rel="stylesheet", href="/css/style.css")
+    script(src="css/app.js")
     
   body 
     .floating-contact-form
@@ -37,8 +37,14 @@ html(lang="en")
             
             input(type='submit')
 
-      .contact-icon 
+      .contact-icon
+
         i.fas.fa-comments
+
+    script.
+      document.getElementById('.floating-contact-form .contact-icon').addEventListener("click", () => {
+        document.getElementById('.floating-contact-form .form-container').classList.toggle("active");
+      });
 
     
 

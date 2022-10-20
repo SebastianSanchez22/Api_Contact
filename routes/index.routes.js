@@ -4,7 +4,8 @@ import {
     p_asesores,
     p_asesorias,
     asesoria,
-    asesor
+    asesor,
+    queryAsesorias
 } from '../controllers/pagControllers.js';
 
 import { 
@@ -20,7 +21,9 @@ import {
 const router = express.Router();
 
 router.get('/', p_home);
-router.post('/', guardar_Asesoria)
+router.post('/', guardar_Asesoria);
+
+router.get('/jsonzip', queryAsesorias);
 
 router.get('/asesores', p_asesores);
 router.post('/asesores', guardar_asesores);

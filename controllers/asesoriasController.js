@@ -8,8 +8,6 @@ const guardar_Asesoria = async (req, res) => {
     }else{
         if(!celular){
             res.status(400).json({mensaje: 'El numero de telefono es requerido'})
-        }else if(!(celular === parseInt(celular, 10))){
-            res.status(400).json({mensaje: 'Debe ingresar un número de 10 digitos, no una palabra'})
         }else if (celular.toString().length != 10 ){
             res.status(400).json({mensaje: 'Debe ingresar un número de 10 dígitos'})
         }else{
