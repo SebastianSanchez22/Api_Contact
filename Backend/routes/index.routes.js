@@ -1,6 +1,5 @@
 import express from 'express';
-import {  
-    p_home,
+import {
     p_asesores,
     p_asesorias,
     asesoria,
@@ -20,7 +19,7 @@ import {
 
 const router = express.Router();
 
-router.get('/', p_home);
+//router.get('/', p_home);
 router.post('/', guardar_Asesoria);
 
 router.get('/jsonzip', queryAsesorias);

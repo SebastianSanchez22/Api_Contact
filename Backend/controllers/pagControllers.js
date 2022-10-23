@@ -1,9 +1,9 @@
 import {Asesor} from '../models/asesor.js';
 import { Asesoria } from '../models/asesoria.js';
 
-const p_home = (req, res) => {
+/*const p_home = (req, res) => {
     res.render('vUsuarios.pug');
-}
+}*/
 
 const p_asesores = async (req, res) => {
     try{
@@ -60,8 +60,7 @@ const queryAsesorias = async (req, res) => {
     }
 }
 
-export {p_home,
-        p_asesores,
+export {p_asesores,
         p_asesorias, 
         asesor,
         asesoria,

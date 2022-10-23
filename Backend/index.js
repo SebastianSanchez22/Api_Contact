@@ -1,6 +1,7 @@
 import express from "express";
 import router from "./routes/index.routes.js";
 import db from "./configuracion/db.js";
+import cors from 'cors';
 
 const app = express();
 
@@ -12,14 +13,27 @@ db.authenticate()
 // Puerto
 const port = 3000;
 
-app.set('view engine', 'pug');
-
 app.use(express.static('public'));
 
 // Leer form
 app.use(express.urlencoded({ extended: true }));
  
 app.use(express.json());
+
+/*const dominiosPermitidos = ["http://127.0.0.1:5173/"]
+
+const corsOptions = {
+    origin: function(origin, callback){
+        if(dominiosPermitidos.indexOf(origin) !== -1){
+            //El origen del Request está permitido
+            callback(null, true)
+        }else{
+            callback(new Error('No está permitido por CORS'));
+        }
+    }
+}*/
+
+app.use(cors({ origin: 'http://127.0.0.1:8000'}))
 
 app.use((req, res, next) => {
     return next();

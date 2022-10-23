@@ -1,8 +1,7 @@
-import { DATE } from "sequelize";
 import { Asesoria } from "../models/asesoria.js";
 
 const guardar_Asesoria = async (req, res) => {
-    const {nombreAsesorado, celular,categoria, plataforma, fechaAsesoria} = req.body;
+    const {nombreAsesorado, celular,categoria, plataforma, fechaAsesoria} = req.body.datos;
     if(!nombreAsesorado || nombreAsesorado.length <3 || nombreAsesorado.length > 30){
         res.status(400).json({mensaje: 'El nombre es requerido y debe ser al menos 3 letras y a lo sumo de 30'})
     }else{
@@ -23,6 +22,13 @@ const guardar_Asesoria = async (req, res) => {
                 }
             }
         }
+    }
+
+    const existeAsesoria = await Asesoria.findOne(({ where: { nombreAsesorado : nombreAsesorado } }));
+
+    if (existeAsesoria){
+        const error = new Error("La asesoria ingresada ya existe");
+        return res.status(400).json({msg: error.message});
     }
     
     try {
