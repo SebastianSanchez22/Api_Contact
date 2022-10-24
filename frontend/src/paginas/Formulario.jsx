@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Alerta from '../components/Alerta'
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPhone, faSignature, faCalendarAlt, faFolderOpen, faReplyAll } from '@fortawesome/free-solid-svg-icons'
 
 const Formulario = () => {
 
@@ -81,43 +83,47 @@ const Formulario = () => {
         </p>
 
         <div className="mb-1">
-          <label htmlFor="nombreAsesorado" className="text-gray-700 font-bold">Nombre</label>
+          <FontAwesomeIcon icon={faSignature}/>
+          <label htmlFor="nombreAsesorado" className="text-gray-700 font-bold ml-2">Nombre</label>
           <input 
             type="text"
             placeholder="Nombre"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md hover:border-indigo-600"
             onChange={handleInputChange} 
             name="nombreAsesorado"
           />
         </div>
 
         <div className="mb-1">
-          <label htmlFor="celular" className="text-gray-700 font-bold">Celular</label>
+          <FontAwesomeIcon icon={faPhone}/>
+          <label htmlFor="celular" className="text-gray-700 font-bold ml-2">Celular</label>
           <input 
             type="number"
             placeholder="Celular"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md hover:border-indigo-600"
             onChange={handleInputChange} 
             name="celular"
           />
         </div>
 
         <div className="mb-1">
-          <label htmlFor="categoria" className="text-gray-700 font-bold">Categoría</label>
+        <FontAwesomeIcon icon={faFolderOpen}/>
+          <label htmlFor="categoria" className="text-gray-700 font-bold ml-2">Categoría</label>
           <input 
             type="text" 
             placeholder="Categoría"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md hover:border-indigo-600"
             onChange={handleInputChange} 
             name="categoria"
           />
         </div>
 
         <div className="mb-1">
-          <label htmlFor="plataforma" className="text-gray-700 font-bold">Plataforma</label>
-          <select name="plataforma" className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+        <FontAwesomeIcon icon={faReplyAll}/>
+          <label htmlFor="plataforma" className="text-gray-700 font-bold ml-2">Plataforma</label>
+          <select name="plataforma" className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md hover:border-indigo-600"
             onChange={handleInputChange}>
-            <option value="">Escoja una plataforma</option>
+            <option value="" >Escoja una plataforma</option>
             <option value="WhatsApp">WhatsApp</option>
             <option value="Telegram">Telegram</option>
             <option value="Llamada">Llamada</option>
@@ -125,10 +131,11 @@ const Formulario = () => {
         </div>
 
         <div className="mb-5">
-          <label htmlFor="fechaAsesoria" className="text-gray-700 font-bold">Fecha de la asesoría</label>
+          <FontAwesomeIcon icon={faCalendarAlt}/>
+          <label htmlFor="fechaAsesoria" className="text-gray-700 font-bold ml-2">Fecha de la asesoría</label>
           <input 
             type="date"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md hover:border-indigo-600"
             onChange={handleInputChange}
             name="fechaAsesoria"
           />
