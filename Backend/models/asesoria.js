@@ -24,7 +24,7 @@ export const Asesoria = db.define('asesoria', {
         allowNull: false,
     },
     fechaAsesoria: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
     },
     estado: {

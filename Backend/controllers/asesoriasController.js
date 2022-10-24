@@ -24,7 +24,8 @@ const guardar_Asesoria = async (req, res) => {
         }
     }
 
-    const existeAsesoria = await Asesoria.findOne(({ where: { nombreAsesorado : nombreAsesorado } }));
+    const existeAsesoria = await Asesoria.findOne(({ where: { nombreAsesorado : nombreAsesorado,
+        categoria: categoria, fechaAsesoria: fechaAsesoria } }));
 
     if (existeAsesoria){
         const error = new Error("La asesoria ingresada ya existe");

@@ -20,20 +20,7 @@ app.use(express.urlencoded({ extended: true }));
  
 app.use(express.json());
 
-/*const dominiosPermitidos = ["http://127.0.0.1:5173/"]
-
-const corsOptions = {
-    origin: function(origin, callback){
-        if(dominiosPermitidos.indexOf(origin) !== -1){
-            //El origen del Request está permitido
-            callback(null, true)
-        }else{
-            callback(new Error('No está permitido por CORS'));
-        }
-    }
-}*/
-
-app.use(cors({ origin: 'http://127.0.0.1:8000'}))
+app.use(cors())
 
 app.use((req, res, next) => {
     return next();
@@ -48,27 +35,10 @@ app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //--------------BOT---------------//
 import { Telegraf }  from 'telegraf';
 
 const bot = new Telegraf('5749708663:AAG8V96OweaChUs0X8ZpByKM5_Vh15GEUv0');
-
-
 
 function initializeBot(){
     bot.launch();
@@ -93,7 +63,5 @@ function initializeBot(){
     console.log("Ejecutando bot")
 }    
 
-
 initializeBot();
-
 

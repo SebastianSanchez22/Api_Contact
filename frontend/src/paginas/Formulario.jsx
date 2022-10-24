@@ -66,19 +66,22 @@ const Formulario = () => {
     </button>
     <div className={`${mostrarFormulario ? 'block' : 'hidden'} flex flex-col justify-center items-center`}>
       
-      <p className="text-lg text-center mt-10 mb-5">
-          Queremos brindarte más 
-          <span className="text-indigo-600 font-bold uppercase"> Información</span> 
-      </p>
+      
 
       {msg && <Alerta alerta={alerta}/>}
 
       <form
-        className="bg-white py-4 px-5 mb-10 lg:mb-0 shadow-md rounded-md"
+        className="bg-white py-4 px-5 mb-2 lg:mb-0 shadow-md rounded-md"
         onSubmit={enviarDatos}
       >
-        <div className="mb-5">
-          <label htmlFor="nombreAsesorado" className="text-gray-700 uppercase font-bold">Nombre</label>
+
+        <p className="text-lg text-center mb-5 font-bold">
+          Nos gustaría brindarte más 
+          <span className="text-indigo-600 font-bold uppercase"> Información</span> 
+        </p>
+
+        <div className="mb-1">
+          <label htmlFor="nombreAsesorado" className="text-gray-700 font-bold">Nombre</label>
           <input 
             type="text"
             placeholder="Nombre"
@@ -88,8 +91,8 @@ const Formulario = () => {
           />
         </div>
 
-        <div className="mb-5">
-          <label htmlFor="celular" className="text-gray-700 uppercase font-bold">Celular</label>
+        <div className="mb-1">
+          <label htmlFor="celular" className="text-gray-700 font-bold">Celular</label>
           <input 
             type="number"
             placeholder="Celular"
@@ -99,8 +102,8 @@ const Formulario = () => {
           />
         </div>
 
-        <div className="mb-5">
-          <label htmlFor="categoria" className="text-gray-700 uppercase font-bold">Categoría</label>
+        <div className="mb-1">
+          <label htmlFor="categoria" className="text-gray-700 font-bold">Categoría</label>
           <input 
             type="text" 
             placeholder="Categoría"
@@ -110,19 +113,19 @@ const Formulario = () => {
           />
         </div>
 
-        <div className="mb-5">
-          <label htmlFor="plataforma" className="text-gray-700 uppercase font-bold">Plataforma</label>
-          <input 
-            type="text"
-            placeholder="Plataforma"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-            onChange={handleInputChange} 
-            name="plataforma"
-          />
+        <div className="mb-1">
+          <label htmlFor="plataforma" className="text-gray-700 font-bold">Plataforma</label>
+          <select name="plataforma" className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            onChange={handleInputChange}>
+            <option value="">Escoja una plataforma</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Telegram">Telegram</option>
+            <option value="Llamada">Llamada</option>
+          </select>
         </div>
 
         <div className="mb-5">
-          <label htmlFor="fechaAsesoria" className="text-gray-700 uppercase font-bold">Fecha Asesoria</label>
+          <label htmlFor="fechaAsesoria" className="text-gray-700 font-bold">Fecha de la asesoría</label>
           <input 
             type="date"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
@@ -133,7 +136,7 @@ const Formulario = () => {
 
         <input 
           type="submit" 
-          className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
+          className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors rounded-full"
           value="Pedir Asesoría"
         
         />
