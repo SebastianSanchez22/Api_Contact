@@ -29,7 +29,7 @@ function initializeBot(){
 
 function asesoria(chatid,asesorName,asesoradoName,phoneNumber,category,medio, fechaAsesoria){
 
-    let unmensaje = 'Hola '+asesorName+', '+asesoradoName+' está solicitando una asesoria en el tema de '+category+' por medio de: '+medio+ ' , su número es: '+phoneNumber+ ' , el día de la asesoría sería: '+fechaAsesoria;
+    let unmensaje = 'Hola '+asesorName+', '+asesoradoName+' está solicitando una asesoría en el tema de '+category+' por medio de la plataforma '+medio+ ' , su número es '+phoneNumber+ ' y el día de la asesoría sería: '+fechaAsesoria;
     bot.telegram.sendMessage(chatid, unmensaje, {
         reply_markup: {
             inline_keyboard: [
