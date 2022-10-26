@@ -1,28 +1,8 @@
 import { Asesoria } from "../models/asesoria.js";
+import { initializeBot, asesoria, QueryAsesores, buscarAsesor } from "../bot/bot.js";
 
 const guardar_Asesoria = async (req, res) => {
     const {nombreAsesorado, celular,categoria, plataforma, fechaAsesoria} = req.body.datos;
-    if(!nombreAsesorado || nombreAsesorado.length <3 || nombreAsesorado.length > 30){
-        res.status(400).json({mensaje: 'El nombre es requerido y debe ser al menos 3 letras y a lo sumo de 30'})
-    }else{
-        if(!celular){
-            res.status(400).json({mensaje: 'El numero de telefono es requerido'})
-        }else if (celular.toString().length != 10 ){
-            res.status(400).json({mensaje: 'Debe ingresar un número de 10 dígitos'})
-        }else{
-            if(!categoria){
-                res.status(400).json({mensaje: 'La categoría es requerida'})
-            }else{
-                if(!plataforma){
-                    res.status(400).json({mensaje: 'La plataforma es requerida'})
-                }else{
-                    if(!fechaAsesoria){
-                        res.status(400).json({mensaje:'La fecha de la asesoria es requerida'})
-                    }
-                }
-            }
-        }
-    }
 
     const existeAsesoria = await Asesoria.findOne(({ where: { nombreAsesorado : nombreAsesorado,
         categoria: categoria, fechaAsesoria: fechaAsesoria } }));
@@ -41,7 +21,10 @@ const guardar_Asesoria = async (req, res) => {
             fechaAsesoria
         });
         //res.redirect('/');
+        initializeBot();
+        buscarAsesor();
         res.json(nuevaAsesoria);
+
     } catch (error) {
         console.log(error);
     }
