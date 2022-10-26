@@ -1,7 +1,7 @@
 {
   "name": "store",
   "version": "1.0.0",
-  "description": "",
+  "description": "API desarrollada en Node.js para ofrecer asesorías a clientes interesados en algún producto, automatizada bajo Telegram",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
@@ -29,6 +29,14 @@
     "mysql2": "^2.3.3",
     "pug": "^3.0.2",
     "sequelize": "^6.21.4",
-    "telegraf": "^4.8.6"
-  }
+    "telegraf": "^4.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebastianSanchez22/Api_Contact.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SebastianSanchez22/Api_Contact/issues"
+  },
+  "homepage": "https://github.com/SebastianSanchez22/Api_Contact#readme"
 }

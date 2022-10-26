@@ -36,6 +36,11 @@ const Formulario = () => {
       return;
     }
 
+    if (datos.celular.length < 10 || datos.celular.length > 10){
+      setAlerta({msg: 'El número debe tener 10 dígitos', error: true})
+      return;
+    }
+
     setAlerta({});
 
     // Crear asesoría en BD.
