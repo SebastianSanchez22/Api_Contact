@@ -2,6 +2,7 @@ import express from "express";
 import router from "./routes/index.routes.js";
 import db from "./configuracion/db.js";
 import cors from 'cors';
+import { initializeBot } from "./bot/bot.js";
 
 const app = express();
 
@@ -34,4 +35,6 @@ app.use('/asesorias', router);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+//initializeBot();
 

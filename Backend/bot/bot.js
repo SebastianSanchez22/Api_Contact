@@ -12,24 +12,13 @@ function initializeBot(){
         console.log(chatid);
     })
 
-    bot.action('SI', ctx => {
-        console.log("La asesoria ha sido tomada");
-    })
-    
-    bot.action('NO', ctx => {
-        console.log("La asesoria No ha sido tomada");
-    })
-
-    bot.hears('Prueba', (ctx) => {
-        asesoria(5187647590,'Juan el asesor','Bicicletas','Whatsapp');
-    })
-
     console.log("Ejecutando bot")
-}    
+}
 
-function asesoria(chatid,asesorName,asesoradoName,phoneNumber,category,medio, fechaAsesoria){
+async function asesoria(chatid,asesorName,asesoriaID,asesoradoName,category,medio, fechaAsesoria){
 
-    let unmensaje = 'Hola '+asesorName+', '+asesoradoName+' está solicitando una asesoría en el tema de '+category+' por medio de la plataforma '+medio+ ' , su número es '+phoneNumber+ ' y el día de la asesoría sería: '+fechaAsesoria;
+    let unmensaje = 'Hola '+asesorName+', '+asesoradoName+' está solicitando una asesoría en el tema de '+category+' por medio de la plataforma '+medio+ ' y el día de la asesoría sería: '+fechaAsesoria;
+    
     bot.telegram.sendMessage(chatid, unmensaje, {
         reply_markup: {
             inline_keyboard: [
@@ -48,27 +37,47 @@ function asesoria(chatid,asesorName,asesoradoName,phoneNumber,category,medio, fe
     })
 }
 
+async function chequearRespuestaAsesor(asesoriaID, nombreAsesorado, categoria, celular, fechaAsesoria){ 
+    let estadoActual = await buscarEstadoAsesoria(asesoriaID);
+        bot.action('SI', function(ctx) {   
+            if(estadoActual[0].estado== "Pendiente"){
+                actualizarEstadoAsesoria(asesoriaID);
+                estadoActual[0].estado = "Tomada";
+                try {
+                    ctx.deleteMessage();
+                } catch (error) {
+                }
+                bot.telegram.sendMessage(ctx.chat.id, `Tomaste la asesoría con ${nombreAsesorado} sobre ${categoria}, su celular es ${celular}, ten en cuenta que la fecha de la asesoría es: ${fechaAsesoria}`);
+            } else {
+                try {
+                    ctx.deleteMessage();
+                } catch (error) {
+                }
+                bot.telegram.sendMessage(ctx.chat.id, "La asesoría ya no se encuentra disponible porque ya fue tomada");
+            }
+            })
+        
+        bot.action('NO', ctx => {
+            try {
+            ctx.deleteMessage();
+            } catch (error) {
+            }
+            bot.telegram.sendMessage(ctx.chat.id, "No se te asignará la asesoría");
+        })
+}
 
 async function QueryAsesores(categoriaBuscada){
     const [asesoresParaCategoria, metadata1] = await db.query(`SELECT x.telegram_id,x.nombreAsesor FROM asesor x INNER JOIN asesor_categoria y ON x.id_asesor=y.id_asesor WHERE y.id_categoria = (SELECT id_categoria FROM categoria WHERE categoria.nombreCategoria="${categoriaBuscada}")`)
     return asesoresParaCategoria;
 }
 
-async function contactarAsesor(){
-    const [asesoriasPendientes, metadata] = await db.query("SELECT * FROM asesoria WHERE estado = 'Pendiente'")
-    for (let i=0;i<asesoriasPendientes.length;i++){
-        let asesores = await QueryAsesores(asesoriasPendientes[i].categoria)
-        for (let j=0;j<asesores.length;j++){
-            asesoria(asesores[j].telegram_id,asesores[j].nombreAsesor,asesoriasPendientes[i].nombreAsesorado,asesoriasPendientes[i].celular, asesoriasPendientes[i].categoria,asesoriasPendientes[i].plataforma)
-        }
-    }
-}
-
 async function buscarAsesor(){
-    const [asesoriaNueva, metadata] = await db.query("SELECT * FROM asesoria ORDER BY id_asesoria DESC LIMIT 1")
+    const [asesoriaNueva, metadata] = await db.query("SELECT * FROM asesoria ORDER BY id_asesoria DESC LIMIT 1");
     let asesores = await QueryAsesores(asesoriaNueva[0].categoria)
+   
     for (let i = 0; i < asesores.length; i++) {
-        asesoria(asesores[i].telegram_id,asesores[i].nombreAsesor,asesoriaNueva[0].nombreAsesorado,asesoriaNueva[0].celular, asesoriaNueva[0].categoria,asesoriaNueva[0].plataforma,asesoriaNueva[0].fechaAsesoria) 
+        await asesoria(asesores[i].telegram_id,asesores[i].nombreAsesor,asesoriaNueva[0].id_asesoria,asesoriaNueva[0].nombreAsesorado,asesoriaNueva[0].categoria,asesoriaNueva[0].plataforma,asesoriaNueva[0].fechaAsesoria)
+        await chequearRespuestaAsesor(asesoriaNueva[0].id_asesoria, asesoriaNueva[0].nombreAsesorado, asesoriaNueva[0].categoria, asesoriaNueva[0].celular, asesoriaNueva[0].fechaAsesoria);
     }
 }
 
@@ -82,4 +91,5 @@ async function actualizarEstadoAsesoria(idACambiar){
     return actualizarEstado;
 }
 
-export {initializeBot, asesoria, QueryAsesores, contactarAsesor, buscarAsesor, buscarEstadoAsesoria, actualizarEstadoAsesoria};
+
+export {initializeBot, asesoria, QueryAsesores, buscarAsesor, buscarEstadoAsesoria, actualizarEstadoAsesoria};

@@ -1,5 +1,5 @@
 import { Asesoria } from "../models/asesoria.js";
-import { initializeBot, asesoria, QueryAsesores, buscarAsesor } from "../bot/bot.js";
+import { initializeBot, buscarAsesor } from "../bot/bot.js";
 
 const guardar_Asesoria = async (req, res) => {
     const {nombreAsesorado, celular,categoria, plataforma, fechaAsesoria} = req.body.datos;
@@ -20,7 +20,6 @@ const guardar_Asesoria = async (req, res) => {
             plataforma,
             fechaAsesoria
         });
-        //res.redirect('/');
         initializeBot();
         buscarAsesor();
         res.json(nuevaAsesoria);

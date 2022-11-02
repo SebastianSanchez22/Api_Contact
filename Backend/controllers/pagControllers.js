@@ -46,23 +46,8 @@ const asesor = async (req, res, next) => {
     }
 };
 
-const queryAsesorias = async (req, res) => {
-
-    const asesorias = await Asesoria.findAll({where: {estado: 'Pendiente'}})
-
-    try {
-
-        res.json(asesorias);
-        console.log(asesorias[0].dataValues.celular);
-        
-    }catch(error){
-        console.log(error)
-    }
-}
-
 export {p_home,
         p_asesores,
         p_asesorias, 
         asesor,
-        asesoria,
-        queryAsesorias};
+        asesoria};
