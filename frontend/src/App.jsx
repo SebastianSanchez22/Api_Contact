@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AuthLayout from './layout/AuthLayout'
 import Formulario from './paginas/Formulario'
+import FormAsesor from './paginas/FormAsesor'
 
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={ <AuthLayout/>}>
-          <Route index element={<Formulario/>}/>
+          <Route index element={<FormAsesor/>}/>
+
         </Route>
       </Routes>
     </BrowserRouter>
@@ -16,3 +18,4 @@ function App() {
 }
 
 export default App
+//<Route index element={<Formulario/>}/>
