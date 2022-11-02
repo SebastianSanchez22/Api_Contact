@@ -114,13 +114,14 @@ const Formulario = () => {
         <div className="mb-1">
         <FontAwesomeIcon icon={faFolderOpen}/>
           <label htmlFor="categoria" className="text-gray-700 font-bold ml-2">Categoría</label>
-          <input 
-            type="text" 
-            placeholder="Categoría"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md hover:border-indigo-600"
-            onChange={handleInputChange} 
-            name="categoria"
-          />
+          <select name="categoria" className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md hover:border-indigo-600"
+            onChange={handleInputChange}>
+            <option value="" >Escoja una categoría</option>
+            <option value="Computadores">Computadores</option>
+            <option value="Vehiculos">Vehiculos</option>
+            <option value="Televisores">Televisores</option>
+            <option value="Celulares">Celulares</option>
+          </select>
         </div>
 
         <div className="mb-1">
