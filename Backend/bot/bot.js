@@ -59,7 +59,7 @@ async function chequearRespuestaAsesor(asesoriaID, nombreAsesorado, categoria, c
         
         bot.action('NO', ctx => {
             try {
-            ctx.deleteMessage();
+                ctx.deleteMessage();
             } catch (error) {
             }
             bot.telegram.sendMessage(ctx.chat.id, "No se te asignará la asesoría");
