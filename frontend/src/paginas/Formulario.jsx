@@ -41,6 +41,15 @@ const Formulario = () => {
       return;
     }
 
+    const fechaIngresada = datos.fechaAsesoria.split("-");
+    const año = parseInt(fechaIngresada[0]);
+    const mes = parseInt(fechaIngresada[1]);
+
+    if(año < 2022 || mes > 12 || mes < 1){
+      setAlerta({msg: 'Ingrese una fecha válida', error: true});
+      return;
+    }
+
     setAlerta({});
 
     // Crear asesoría en BD.
